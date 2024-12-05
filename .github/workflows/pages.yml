@@ -1,0 +1,23 @@
+name: Build and Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Pages
+        uses: actions/setup-pages@v3
+
+      - name: Deploy
+        run: |
+          mkdir public
+          mv * public/
+          mv public/* ./
