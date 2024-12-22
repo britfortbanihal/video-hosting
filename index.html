@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Video Player</title>
-    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet">
-    <style>
-        body {
-            text-align: center;
-            background-color: #f4f4f9;
-            font-family: Arial, sans-serif;
-        }
-        video {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Video</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 8px;
+    }
+    p {
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-    <h1>Free English Class by Britfort Academy, Banihal </h1>
-    <video
-        id="secure-video"
-        class="video-js"
-        controls
-        preload="auto"
-        width="640"
-        height="360"
-        data-setup="{}">
-        <source src="https://www.youtube.com/watch?v=KWnLztcylPk" type="application/x-mpegURL">
-        <!-- Optionally add DASH link -->
-        <!-- <source src="https://www.youtube.com/watch?v=KWnLztcylPk" type="application/dash+xml"> -->
-        Your browser does not support the video tag.
-    </video>
-    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-    <script>
-        // Optional: Disable right-click on the video
-        document.querySelector("#secure-video").addEventListener("contextmenu", (e) => {
-            e.preventDefault();
-        });
-    </script>
+  <div class="container">
+    <h1>Free English Class by Britfort Academy, Banihal</h1>
+    <iframe 
+      src="https://www.youtube.com/watch?v=KWnLztcylPk" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+    <p>If the video doesn't load, ensure you have access to the link.</p>
+  </div>
 </body>
 </html>
