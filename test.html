@@ -1,42 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Access Restricted</title>
-    <script>
-        function submitForm() {
-            let name = document.getElementById("name").value;
-            let phone = document.getElementById("phone").value;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free English Class – Britfort Academy</title>
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+      }
 
-            if (name.trim() === "" || phone.trim() === "") {
-                alert("Please enter both name and phone number!");
-                return;
-            }
+      .container {
+          max-width: 400px;
+          background: #fff;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          margin: 100px auto;
+      }
 
-            let scriptUrl = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
-            fetch(scriptUrl, {
-                method: "POST",
-                body: JSON.stringify({ name: name, phone: phone }),
-                headers: { "Content-Type": "application/json" }
-            })
-            .then(() => {
-                document.getElementById("login").style.display = "none";
-                document.getElementById("content").style.display = "block";
-            })
-            .catch(error => console.error("Error:", error));
-        }
-    </script>
+      h2 {
+          color: #333;
+      }
+
+      input {
+          width: 90%;
+          padding: 10px;
+          margin: 10px 0;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+      }
+
+      button {
+          background-color: #007bff;
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+          transition: 0.3s;
+      }
+
+      button:hover {
+          background-color: #0056b3;
+      }
+
+      #video {
+          display: none;
+          max-width: 800px;
+          margin: 50px auto;
+      }
+  </style>
+
+  <script>
+      function submitForm() {
+          let name = document.getElementById("name").value;
+          let phone = document.getElementById("phone").value;
+
+          if (name.trim() === "" || phone.trim() === "") {
+              alert("Please enter both name and phone number!");
+              return;
+          }
+
+          let scriptUrl = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+          fetch(scriptUrl, {
+              method: "POST",
+              body: JSON.stringify({ name: name, phone: phone }),
+              headers: { "Content-Type": "application/json" }
+          })
+          .then(() => {
+              document.getElementById("login").style.display = "none";
+              document.getElementById("video").style.display = "block";
+          })
+          .catch(error => console.error("Error:", error));
+      }
+  </script>
 </head>
 <body>
-    <div id="login">
-        <h2>Enter Details to Access</h2>
-        <input type="text" id="name" placeholder="Enter your name"><br><br>
-        <input type="text" id="phone" placeholder="Enter your phone number"><br><br>
-        <button onclick="submitForm()">Submit</button>
-    </div>
 
-    <div id="content" style="display: none;">
-        <h2>Welcome!</h2>
-        <p>Your content is now accessible.</p>
-    </div>
+  <div id="login" class="container">
+      <h2>Enter Details to Watch the Video</h2>
+      <input type="text" id="name" placeholder="Enter your name"><br>
+      <input type="text" id="phone" placeholder="Enter your phone number"><br>
+      <button onclick="submitForm()">Submit</button>
+  </div>
+
+  <div id="video">
+      <h1>Free English Class by Britfort Academy, Banihal</h1>
+      <iframe 
+        src="https://player.vimeo.com/video/1041553660" 
+        width="100%" 
+        height="450" 
+        frameborder="0" 
+        allow="autoplay; fullscreen" 
+        allowfullscreen>
+      </iframe>
+  </div>
+
 </body>
 </html>
