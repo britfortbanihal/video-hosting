@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Restricted</title>
+    <script>
+        function submitForm() {
+            let name = document.getElementById("name").value;
+            let phone = document.getElementById("phone").value;
+
+            if (name.trim() === "" || phone.trim() === "") {
+                alert("Please enter both name and phone number!");
+                return;
+            }
+
+            let scriptUrl = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+            fetch(scriptUrl, {
+                method: "POST",
+                body: JSON.stringify({ name: name, phone: phone }),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(() => {
+                document.getElementById("login").style.display = "none";
+                document.getElementById("content").style.display = "block";
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</head>
+<body>
+    <div id="login">
+        <h2>Enter Details to Access</h2>
+        <input type="text" id="name" placeholder="Enter your name"><br><br>
+        <input type="text" id="phone" placeholder="Enter your phone number"><br><br>
+        <button onclick="submitForm()">Submit</button>
+    </div>
+
+    <div id="content" style="display: none;">
+        <h2>Welcome!</h2>
+        <p>Your content is now accessible.</p>
+    </div>
+</body>
+</html>
