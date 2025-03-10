@@ -57,29 +57,39 @@
       }
   </style>
 
-  <script>
-      function submitForm() {
-          let name = document.getElementById("name").value;
-          let phone = document.getElementById("phone").value;
+<script>
+    function submitForm() {
+        let name = document.getElementById("name").value.trim();
+        let phone = document.getElementById("phone").value.trim();
 
-          if (name.trim() === "" || phone.trim() === "") {
-              alert("Please enter both name and phone number!");
-              return;
-          }
+        if (name === "" || phone === "") {
+            alert("Please enter both name and phone number!");
+            return;
+        }
 
-          let scriptUrl = "https://script.google.com/macros/s/AKfycbxnaYv8jrtq9nDu7I8Ai1_lmo91JqEuxJlK4P8Fxt0IcatYWi2hd_WmY01FyQWW-tJF/exec";
-          fetch(scriptUrl, {
-              method: "POST",
-              body: JSON.stringify({ name: name, phone: phone }),
-              headers: { "Content-Type": "application/json" }
-          })
-          .then(() => {
-              document.getElementById("login").style.display = "none";
-              document.getElementById("video").style.display = "block";
-          })
-          .catch(error => console.error("Error:", error));
-      }
-  </script>
+        let scriptUrl = "https://script.google.com/macros/s/AKfycbxOfS90OZR5VfQYoGg5DulyP2-dSOj9CKMchTUHRZg87gBLY7F1ClIziQcan8aAnuc/exec";
+
+        let formData = new FormData();
+        formData.append("name", name);
+        formData.append("phone", phone);
+
+        fetch(scriptUrl, {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.result === "success") {
+                document.getElementById("login").style.display = "none";
+                document.getElementById("video").style.display = "block";
+            } else {
+                alert("Failed to submit. Please try again.");
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    }
+</script>
+
 </head>
 <body>
 
